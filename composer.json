@@ -1,0 +1,15 @@
+{
+  "name": "brp/notification-sender-bundle",
+  "type": "symfony-bundle",
+  "description" : "Notification Sender Bundle",
+  "version": "0.0.1",
+  "require": {
+    "php":">=5.4.0",
+  },
+  "suggest" : {
+  },
+  "autoload": {
+    "psr-0": { "Brp\\NotificationSenderBundle": "" }
+  },
+  "target-dir": "Brp/NotificationSenderBundle"
+}
