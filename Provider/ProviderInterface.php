@@ -11,7 +11,7 @@ namespace Brp\NotificationSenderBundle\Provider;
 
 interface ProviderInterface
 {
-    public function send($templateParameters, $providerParameters);
+    public function send();
 
     public function getConnectionParams();
 

@@ -81,7 +81,7 @@ class BrpNotificationSender implements SenderInterface
 
             $this->fillProviderConnectionParams($provider, $template);
 
-            $provider->send(null, null);
+            $provider->send();
         }
     }
 
