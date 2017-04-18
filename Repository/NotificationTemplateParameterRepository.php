@@ -27,9 +27,6 @@ class NotificationTemplateParameterRepository extends EntityRepository
             $result[$qr['code']] = $qr['value'];
         }
 
-        // TODO: fix this place
-        $result['Body'] = $template->getBody();
-
         return $result;
     }
 }

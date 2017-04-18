@@ -51,12 +51,6 @@ class NotificationTemplate
 
     /**
      * @var
-     * @ORM\Column(name="body", type="text", nullable=true)
-     */
-    private $body;
-
-    /**
-     * @var
      *
      * @ORM\OneToMany(targetEntity="Brp\NotificationSenderBundle\Entity\NotificationTemplateParameter", mappedBy="template", cascade={"remove", "persist"})
      */
@@ -231,29 +225,6 @@ class NotificationTemplate
     public function getProvider()
     {
         return $this->provider;
-    }
-
-    /**
-     * Set body
-     *
-     * @param string $body
-     * @return NotificationTemplate
-     */
-    public function setBody($body)
-    {
-        $this->body = $body;
-
-        return $this;
-    }
-
-    /**
-     * Get body
-     *
-     * @return string 
-     */
-    public function getBody()
-    {
-        return $this->body;
     }
 
     public function __toString()
