@@ -51,13 +51,6 @@ class NotificationTemplate
 
     /**
      * @var
-     *
-     * @ORM\OneToMany(targetEntity="Brp\NotificationSenderBundle\Entity\NotificationTemplateParameter", mappedBy="template", cascade={"remove", "persist"})
-     */
-    private $params;
-
-    /**
-     * @var
      * @ORM\ManyToOne(targetEntity="Brp\NotificationSenderBundle\Entity\Provider", inversedBy="templates")
      * @ORM\JoinColumn(name="provider_id", referencedColumnName="id")
      */
@@ -68,11 +61,6 @@ class NotificationTemplate
      * @ORM\Column(name="parameters", type="json")
      */
     private $parameters;
-
-    public function __construct()
-    {
-        $this->params = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -151,39 +139,6 @@ class NotificationTemplate
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Add params
-     *
-     * @param NotificationTemplateParameter $params
-     * @return NotificationTemplate
-     */
-    public function addParam(NotificationTemplateParameter $params)
-    {
-        $this->params[] = $params;
-
-        return $this;
-    }
-
-    /**
-     * Remove params
-     *
-     * @param NotificationTemplateParameter $params
-     */
-    public function removeParam(NotificationTemplateParameter $params)
-    {
-        $this->params->removeElement($params);
-    }
-
-    /**
-     * Get params
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParams()
-    {
-        return $this->params;
     }
 
     /**
