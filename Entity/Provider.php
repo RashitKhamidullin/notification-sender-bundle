@@ -39,12 +39,6 @@ class Provider
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="Brp\NotificationSenderBundle\Entity\ProviderParameter", mappedBy="provider")
-     */
-    private $params;
-
-    /**
-     * @var
      * @ORM\Column(name="code", type="string")
      */
     private $code;
@@ -121,39 +115,6 @@ class Provider
     public function getEnabled()
     {
         return $this->enabled;
-    }
-
-    /**
-     * Add params
-     *
-     * @param ProviderParameter $params
-     * @return Provider
-     */
-    public function addParam(ProviderParameter $params)
-    {
-        $this->params[] = $params;
-
-        return $this;
-    }
-
-    /**
-     * Remove params
-     *
-     * @param ProviderParameter $params
-     */
-    public function removeParam(ProviderParameter $params)
-    {
-        $this->params->removeElement($params);
-    }
-
-    /**
-     * Get params
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParams()
-    {
-        return $this->params;
     }
 
     /**
