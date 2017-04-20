@@ -63,6 +63,12 @@ class NotificationTemplate
      */
     private $provider;
 
+    /**
+     * @var
+     * @ORM\Column(name="parameters", type="json")
+     */
+    private $parameters;
+
     public function __construct()
     {
         $this->params = new ArrayCollection();
@@ -230,5 +236,28 @@ class NotificationTemplate
     public function __toString()
     {
         return is_null($this->getName()) ? 'New Notification Template' : $this->getName();
+    }
+
+    /**
+     * Set parameters
+     *
+     * @param json $parameters
+     * @return NotificationTemplate
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Get parameters
+     *
+     * @return json 
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 }
