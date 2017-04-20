@@ -10,24 +10,38 @@ namespace Brp\NotificationSenderBundle\Parameter;
 interface ProviderTemplateParameterInterface
 {
     /**
-     * Human readable name
+     * Gets human readable name.
+     *
      * @return string
      */
     public function getName();
 
     /**
-     * Unique code for db search
+     * Gets code for db.
      * @return string
      */
     public function getCode();
 
     /**
+     * Gets type.
+     *
      * @return string
      */
     public function getType();
 
+    /**
+     * Sets value.
+     *
+     * @param $value
+     * @return void
+     */
     public function setValue($value);
 
+    /**
+     * Gets value.
+     *
+     * @return mixed
+     */
     public function getConvertedValue();
 
     public function setRenderedValueWith($parameters);

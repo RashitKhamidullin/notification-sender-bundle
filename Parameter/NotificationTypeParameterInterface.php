@@ -23,6 +23,7 @@ interface NotificationTypeParameterInterface
     public static function getCode();
 
     /**
+     * Gets type of the parameter
      * @return string
      */
     public function getType();
