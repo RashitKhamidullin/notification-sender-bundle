@@ -108,9 +108,7 @@ class BrpNotificationSender implements SenderInterface
 
     protected function loadProviderConnectionParams($provider)
     {
-        return $this->em->getRepository('BrpNotificationSenderBundle:ProviderParameter')->getCodeValueParamsArray(
-            $provider
-        );
+        return $provider->getParameters();
     }
 
     protected function fillProviderConnectionParams(ProviderInterface $provider, $template)
@@ -130,9 +128,7 @@ class BrpNotificationSender implements SenderInterface
 
     protected function loadNotificationTemplateParams(NotificationTemplate $notificationTemplate)
     {
-        return $this->em->getRepository(
-            'BrpNotificationSenderBundle:NotificationTemplateParameter'
-        )->getCodeValueTemplateParams($notificationTemplate);
+        return $notificationTemplate->getParameters();
     }
 
     protected function fillProviderTemplateParams(
