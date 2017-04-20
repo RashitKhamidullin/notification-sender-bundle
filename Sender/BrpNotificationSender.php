@@ -97,7 +97,7 @@ class BrpNotificationSender implements SenderInterface
         )->getNotificationTemplatesByCode($code);
     }
 
-    protected function getProviderByCode($providerCode)
+    public function getProviderByCode($providerCode)
     {
         if (array_key_exists($providerCode, $this->providers)) {
             return $this->providers[$providerCode];
