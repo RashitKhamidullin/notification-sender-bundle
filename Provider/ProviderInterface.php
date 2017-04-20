@@ -30,13 +30,6 @@ interface ProviderInterface
     public function getTemplateParams();
 
     /**
-     * @param $code
-     *
-     * @return ProviderTemplateParameterInterface
-     */
-    public function getTemplateParamsByCode($code);
-
-    /**
      * @return mixed
      */
     public function checkAvailable();
