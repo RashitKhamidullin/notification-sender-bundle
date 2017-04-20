@@ -22,4 +22,6 @@ interface ProviderInterface
     public function checkAvailable();
 
     public function getCode();
+
+    public function getDescription();
 }
