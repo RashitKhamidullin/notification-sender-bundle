@@ -55,6 +55,12 @@ class Provider
      */
     private $templates;
 
+    /**
+     * @var
+     * @ORM\Column(name="parameters", type="json")
+     */
+    private $parameters;
+
     public function __construct()
     {
         $this->params = new ArrayCollection();
@@ -204,6 +210,29 @@ class Provider
     public function getTemplates()
     {
         return $this->templates;
+    }
+
+    /**
+     * Set parameters
+     *
+     * @param json $parameters
+     * @return NotificationTemplate
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * Get parameters
+     *
+     * @return json
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
     public function __toString()
