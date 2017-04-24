@@ -11,14 +11,41 @@ namespace Brp\NotificationSenderBundle\NotificationType;
 
 interface NotificationTypeInterface
 {
+    /**
+     * Gets name;
+     *
+     * @return string
+     */
     public function getName();
 
-    public static function getCode();
+    /**
+     * Get code for db.
+     *
+     * @return string
+     */
+    public function getCode();
 
+    /**
+     * Get human readable description.
+     *
+     * @return string
+     */
     public function getDescription();
 
     /**
+     * Gets params.
+     *
      * @return \Brp\NotificationSenderBundle\Parameter\ProviderConnectionParameterInterface[]
      */
     public function getParams();
+
+    /**
+     * Generates proper notification information from data.
+     *
+     * @param $data
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function generateNotification($data);
 }
