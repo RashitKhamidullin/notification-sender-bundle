@@ -13,12 +13,12 @@ use Brp\NotificationSenderBundle\NotificationType\NotificationTypeInterface;
 use Brp\NotificationSenderBundle\Parameter\ProviderConnectionParameterInterface;
 use Brp\NotificationSenderBundle\Parameter\ProviderTemplateParameterInterface;
 use Brp\NotificationSenderBundle\Provider\ProviderInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Psr\Log\LoggerInterface;
 
 class BrpNotificationSender implements SenderInterface
 {
-    /** @var ObjectManager $em */
+    /** @var EntityManager $em */
     private $em;
     /** @var ProviderInterface[] $providers */
     private $providers;
@@ -29,7 +29,7 @@ class BrpNotificationSender implements SenderInterface
      */
     private $logger;
 
-    public function __construct(ObjectManager $em, LoggerInterface $logger)
+    public function __construct(EntityManager $em, LoggerInterface $logger)
     {
         $this->em = $em;
         $this->providers = array();

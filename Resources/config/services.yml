@@ -4,7 +4,6 @@ services:
         arguments: ["@brp_notification_sender.entity_manager", "@logger"]
 
     brp_notification_sender.entity_manager:
-        class: Doctrine\Common\Persistence\ObjectManager
-        factory_service: doctrine
-        factory_method: getManager
+        class: Doctrine\ORM\EntityManager
+        factory: 'doctrine:getManager'
         arguments: [ '%brp_notification_sender.entity_manager%' ]
