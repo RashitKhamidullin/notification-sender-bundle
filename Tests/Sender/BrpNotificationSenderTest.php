@@ -229,7 +229,7 @@ class BrpNotificationSenderTest extends \PHPUnit_Framework_TestCase
     {
         return $this->getMock(
             ProviderTemplateParameterInterface::class,
-            ['getCode', 'getName', 'getConvertedValue', 'getType', 'setRenderedValueWith', 'setValue']
+            ['getCode', 'getName', 'getConvertedValue', 'getType', 'setParameters', 'setValue']
         );
     }
 

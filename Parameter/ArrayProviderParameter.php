@@ -9,8 +9,8 @@ namespace Brp\NotificationSenderBundle\Parameter;
 
 abstract class ArrayProviderParameter implements ProviderTemplateParameterInterface
 {
-    protected $renderedValue;
     protected $value;
+    protected $parameters;
 
     public function setValue($value)
     {
@@ -19,12 +19,12 @@ abstract class ArrayProviderParameter implements ProviderTemplateParameterInterf
 
     public function getConvertedValue()
     {
-        return $this->renderedValue;
+        return $this->convert($this->parameters);
     }
 
-    public function setRenderedValueWith($parameters)
+    public function setParameters($parameters)
     {
-        $this->renderedValue = $this->convert($parameters);
+        $this->parameters = $parameters;
     }
 
     protected function convert($parameters)

@@ -153,7 +153,7 @@ class BrpNotificationSender implements SenderInterface
                     $templateParameter = $notificationTemplateParams[$param->getCode()];
 
                     $param->setValue($templateParameter);
-                    $param->setRenderedValueWith($notificationType->getParams());
+                    $param->setParameters($notificationType->getParams());
 
                 } else {
                     throw new \Exception("NotificationTemplateParameter with code `$param->getCode()` does not exist");

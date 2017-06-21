@@ -12,7 +12,7 @@ abstract class StringProviderParameter implements ProviderTemplateParameterInter
     /** @var \Twig_Environment $twig */
     protected $twig;
     protected $value;
-    protected $renderedValue;
+    protected $parameters;
 
     public function __construct(\Twig_Environment $twig)
     {
@@ -26,12 +26,12 @@ abstract class StringProviderParameter implements ProviderTemplateParameterInter
 
     public function getConvertedValue()
     {
-        return $this->renderedValue;
+        return $this->convert($this->parameters);
     }
 
-    public function setRenderedValueWith($parameters)
+    public function setParameters($parameters)
     {
-        $this->renderedValue = $this->convert($parameters);
+        $this->parameters = $parameters;
     }
 
     protected function convert($parameters)

@@ -44,5 +44,12 @@ interface ProviderTemplateParameterInterface
      */
     public function getConvertedValue();
 
-    public function setRenderedValueWith($parameters);
+    /**
+     * Sets parameters.
+     *
+     * @param $parameters
+     *
+     * @return mixed
+     */
+    public function setParameters($parameters);
 }
