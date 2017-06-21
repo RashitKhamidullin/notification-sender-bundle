@@ -77,11 +77,16 @@ class BrpNotificationSender implements SenderInterface
             /** @var ProviderInterface $provider */
             $provider = $this->getProviderByCode($template->getProvider()->getCode());
 
-            $this->fillProviderTemplateParams($provider, $template, $notificationType);
+            try {
+                $this->fillProviderTemplateParams($provider, $template, $notificationType);
 
-            $this->fillProviderConnectionParams($provider, $template);
+                $this->fillProviderConnectionParams($provider, $template);
 
-            $provider->send();
+                $provider->send();
+
+            } catch (\Exception $e) {
+                $this->logger->error($e);
+            }
         }
     }
 

@@ -12,5 +12,5 @@ use Brp\NotificationSenderBundle\NotificationType\NotificationTypeInterface;
 
 interface SenderInterface
 {
-    public function send(NotificationTypeInterface $code);
+    public function send(NotificationTypeInterface $notificationType);
 }
