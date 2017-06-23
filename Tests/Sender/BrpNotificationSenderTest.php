@@ -24,10 +24,6 @@ class BrpNotificationSenderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $em = $this->getMock('Doctrine\ORM\EntityManager', ['getRepository'], [], '', false);
-//        $em->expects($this->any())
-//            ->method('getRepository')
-//            ->willReturn($this->getMock(NotificationTemplateRepository::class))
-//            ;
 
         $logger = $this->getMock('Psr\Log\LoggerInterface');
 
@@ -42,11 +38,6 @@ class BrpNotificationSenderTest extends \PHPUnit_Framework_TestCase
             NotificationTypeInterface::class,
             ['getName','getCode', 'getDescription', 'getParams', 'generateNotification']
         );
-    }
-
-    public function testLoadTemplateParams()
-    {
-        $this->assertTrue(3 > 1);
     }
 
     public function testAddProvider()
