@@ -14,7 +14,7 @@ abstract class ArrayProviderParameter implements ProviderTemplateParameterInterf
 
     public function setValue($value)
     {
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
     public function getConvertedValue()
@@ -31,23 +31,22 @@ abstract class ArrayProviderParameter implements ProviderTemplateParameterInterf
     {
         $result = [];
 
-        $arr = explode(',', $this->value);
+        if (false === is_null($this->value) && strlen($this->value) > 0) {
 
-//        preg_match_all('/\{\%\s*(.*)\s*\%\}|\{\{(?!%)\s*((?:[^\s])*)\s*(?<!%)\}\}/i', $str, $matches);
+            $arr = explode(',', $this->value);
 
-        foreach ($arr as $a) {
-            $k = str_replace(['{{', '}}'], '', $a);
-            if (array_key_exists($k, $parameters)) {
-                $result = $parameters[$k];
-            } else {
-                $result[] = trim($k);
+            foreach ($arr as $a) {
+                $k = str_replace(['{{', '}}'], '', $a);
+                if (array_key_exists($k, $parameters)) {
+                    $result[] = $parameters[$k];
+                } else {
+                    $result[] = trim($k);
+                }
             }
+
+            return $result;
         }
 
-        if (count($result) > 0) {
-            return $result;
-        } else {
-            throw new \Exception("Wrong convert params");
-        }
+        throw new \Exception("Provider Template Parameter is wrong");
     }
 }
