@@ -11,8 +11,6 @@ use Brp\NotificationSenderBundle\Parameter\StringProviderParameter;
 
 class StringProviderParameterTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var StringProviderParameter|\PHPUnit_Framework_MockObject_MockObject $stringParameter */
-    private $stringParameter;
     /** @var \Twig_Environment|\PHPUnit_Framework_MockObject_MockObject $twig */
     private $twig;
     /** @var Twig_TemplateInterface | \PHPUnit_Framework_MockObject_MockObject $twigTemplate */
@@ -25,11 +23,6 @@ class StringProviderParameterTest extends \PHPUnit_Framework_TestCase
         $this->twigTemplate = $this->getMockBuilder(\Twig_TemplateInterface::class)->getMock();
 
         $this->twig->method('createTemplate')->willReturn($this->twigTemplate);
-
-        $this->stringParameter = $this->getMockBuilder(StringProviderParameter::class)->setConstructorArgs(
-            [$this->twig]
-        )->getMockForAbstractClass()
-        ;
     }
 
     public function testConvert()
@@ -37,12 +30,48 @@ class StringProviderParameterTest extends \PHPUnit_Framework_TestCase
         $params = ['param1', 'param2'];
         $value = 'value';
 
-        $this->stringParameter->setParameters($params);
-        $this->stringParameter->setValue($value);
+        /** @var StringProviderParameter|\PHPUnit_Framework_MockObject_MockObject $stringParameter */
+        $stringParameter = $this->createStringParameter();
+
+        $stringParameter->setParameters($params);
+        $stringParameter->setValue($value);
 
         $this->twig->expects($this->once())->method('createTemplate')->with($value);
         $this->twigTemplate->expects($this->once())->method('render')->with($params);
 
-        $this->stringParameter->getConvertedValue();
+        $stringParameter->getConvertedValue();
+    }
+
+    public function testConvertWithoutParams()
+    {
+        $value = 'value1';
+
+        /** @var StringProviderParameter|\PHPUnit_Framework_MockObject_MockObject $stringParameter */
+        $stringParameter = $this->createStringParameter();
+
+        $stringParameter->setValue($value);
+
+        $this->twig->expects($this->once())->method('createTemplate')->with($value);
+        $this->twigTemplate->expects($this->once())->method('render')->with([]);
+
+        $stringParameter->getConvertedValue();
+    }
+
+    public function testValueIsNotSet()
+    {
+        $this->setExpectedException(\Exception::class);
+
+        /** @var StringProviderParameter|\PHPUnit_Framework_MockObject_MockObject $stringParameter */
+        $stringParameter = $this->createStringParameter();
+
+        $stringParameter->getConvertedValue();
+    }
+
+    private function createStringParameter()
+    {
+        return $this->getMockBuilder(StringProviderParameter::class)->setConstructorArgs(
+            [$this->twig]
+        )->getMockForAbstractClass()
+            ;
     }
 }
