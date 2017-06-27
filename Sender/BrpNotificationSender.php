@@ -82,7 +82,13 @@ class BrpNotificationSender implements SenderInterface
 
                 $this->fillProviderConnectionParams($provider, $template);
 
-                $provider->send();
+                $availability = $provider->checkAvailable();
+
+                if (true === $availability) {
+                    $provider->send();
+                } else {
+                    $this->logger->error($availability);
+                }
 
             } catch (\Exception $e) {
                 $this->logger->error($e);
