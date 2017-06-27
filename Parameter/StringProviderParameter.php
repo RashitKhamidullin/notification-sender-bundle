@@ -12,7 +12,7 @@ abstract class StringProviderParameter implements ProviderTemplateParameterInter
     /** @var \Twig_Environment $twig */
     protected $twig;
     protected $value;
-    protected $parameters;
+    protected $parameters = array();
 
     public function __construct(\Twig_Environment $twig)
     {
@@ -36,6 +36,10 @@ abstract class StringProviderParameter implements ProviderTemplateParameterInter
 
     protected function convert($parameters)
     {
+        if (true === is_null($this->value)) {
+            throw new \Exception("Value must be set before");
+        }
+
         $twigTemplate = $this->twig->createTemplate($this->value);
 
         return $twigTemplate->render($parameters);

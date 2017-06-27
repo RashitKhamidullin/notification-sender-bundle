@@ -10,7 +10,7 @@ namespace Brp\NotificationSenderBundle\Parameter;
 abstract class ArrayProviderParameter implements ProviderTemplateParameterInterface
 {
     protected $value;
-    protected $parameters;
+    protected $parameters = array();
 
     public function setValue($value)
     {
@@ -29,6 +29,10 @@ abstract class ArrayProviderParameter implements ProviderTemplateParameterInterf
 
     protected function convert($parameters)
     {
+        if (true === is_null($this->value)) {
+            throw new \Exception("Value must be set before");
+        }
+
         $result = [];
 
         if (false === is_null($this->value) && strlen($this->value) > 0) {
@@ -36,11 +40,19 @@ abstract class ArrayProviderParameter implements ProviderTemplateParameterInterf
             $arr = explode(',', $this->value);
 
             foreach ($arr as $a) {
-                $k = str_replace(['{{', '}}'], '', $a);
-                if (array_key_exists($k, $parameters)) {
-                    $result[] = $parameters[$k];
+                $a = trim($a);
+                if (substr($a, 0, 2) === '{{' && substr($a, -2) === '}}') {
+
+                    $k = str_replace(['{{', '}}'], '', $a);
+
+                    if (array_key_exists($k, $parameters)) {
+                        $result[] = $parameters[$k];
+                    } else {
+                        throw new \Exception(sprintf("The key %s does't present in parameters", $k));
+                    }
+
                 } else {
-                    $result[] = trim($k);
+                    $result[] = $a;
                 }
             }
 
