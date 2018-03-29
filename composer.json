@@ -9,7 +9,6 @@
   "suggest" : {
   },
   "autoload": {
-    "psr-0": { "Brp\\NotificationSenderBundle": "" }
-  },
-  "target-dir": "Brp/NotificationSenderBundle"
+    "psr-4": { "Brp\\NotificationSenderBundle\\": "" }
+  }
 }
