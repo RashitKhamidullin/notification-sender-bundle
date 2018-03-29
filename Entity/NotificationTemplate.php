@@ -58,7 +58,7 @@ class NotificationTemplate
 
     /**
      * @var
-     * @ORM\Column(name="parameters", type="json")
+     * @ORM\Column(name="parameters", type="json_array")
      */
     private $parameters;
 
