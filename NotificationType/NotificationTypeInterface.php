@@ -35,7 +35,7 @@ interface NotificationTypeInterface
     /**
      * Gets params.
      *
-     * @return \Brp\NotificationSenderBundle\Parameter\ProviderConnectionParameterInterface[]
+     * @return \Brp\NotificationSenderBundle\Parameter\ProviderTemplateParameterInterface[]
      */
     public function getParams();
 
